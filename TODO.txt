@@ -1,0 +1,58 @@
+TODO
+
+A faire au plus sacrant :
+    changer list_id pour list_id_(max ou min) dans les constructeurs, Classes.cpp
+    les fonctions de vérifications (bool) sont écrites, les incorporer dans main, ou piece::bouger, selon le cas.
+    réécrire le systeme de fin de partie FinPartie.cpp, l 173
+
+fait
+    securiser les listes de mouvements (positions[0] > 8 etc...) !!!!!  	-> fait
+        1. roi         fait
+        2. dame        fait   
+        3. fou         fait
+        4. tour        fait
+        5. cavalier    fait
+        6. pion        fait
+
+    relire les listes de coup (positions[0][1] etc...) !!!!      			-> fait
+ 
+    creer un systeme pour manger les pieces (avec this et delete)!!!        -> fait
+               1. a partir du plateau d'identifiant, trouver la piece   -> fait
+               2. appeler un ~delete de la piece trouvée
+               3. systeme technique similaire au mouvement des piece
+
+    faire un systeme choix des pieces (avec le plateau des identifiants)!!  -> fait
+            1. prendre entrée                                           -> fait
+            2. chercher dans les pieces                                 -> fait
+            3. creer une variable piece*                                -> fait
+            4. bouger avec la variable piece*->bouger()                 -> fuck le polymorphisme        ok c'est correct, j'ai compris
+            5. fonction transformant piece* vers subclasse*?            -> non pour vrai, j'hais OOP    pas si pire...  faux, c'est si pire
+
+    ajouter un systeme si la piece ne peut jouer !!!!!!!!                   -> fait
+
+    faire un systeme de boucle de jeu (while roi vivant)!                   -> avec une boucle for(int i = 1;; 1 *= -1)
+               1. bouger la piece
+               2. changer de joueur
+               3. recomencer
+
+systeme de fin de partie!
+            1. voir si un des rois est mort (peut etre arreter la partie dans le destructeur des rois directement ??) -> avec une variable de jeu créée lors d'une fonction "commencer la partie" ?? 
+            2. si oui arreter la partie 
+               1. donner le vainqueur, 
+               2. quitter ou recommencer une partie selon la volonté du joueru
+
+vérifier que le coup est légal
+        regader que le roi n'est pas en échec (via un bool?)                -> fait
+        voir si c'est échec et mat                                          -> fait, à tester!!
+            
+
+ecrire l'ia
+            1.calculer tous les coups possibles du plateau en jeu
+                  calculer 2 coups garder le meilleur et supprimer l'autre ainsi de suite 
+            2.creer un systeme de pointage 
+
+creer un ui 
+            0. creer un systeme de sanitisation(gerer entrées valides)
+            1. choisir le mode (humain ou machine)
+            2. choisir la difficulté
+            3. --help ou -h pour des infos
