@@ -1,14 +1,13 @@
 CXX=$(g++)
 CFLAGS= $(-std=c++17 -Wall) 
 
-src = $(wildcard *.c)
-obj = $(src:.c=.o)
+src=$(wildcard *.cpp)
 
-myprog: $(obj)
+echec: $(src)
   $(CXX) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 clean:
-  rm -f $(obj) myprog
+  rm -rf *.o
 
 #g++ Classes.cpp Partie.cpp Main.cpp FinPartie.cpp -o echec -std=c++17 -Wall
