@@ -4,7 +4,7 @@ CFLAGS= $(-std=c++17 -Wall)
 src=$(wildcard *.cpp)
 
 echec: $(src)
-  $(CXX) -o $@ $^ $(CFLAGS)
+  $(CXX) $^ $(CFLAGS) -o $@
 
 .PHONY: clean
 clean:
