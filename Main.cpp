@@ -1,5 +1,6 @@
 #include "header.h"
 
+
 int main() {
 	pion *pionB1 = new pion(1, 0);
 	pion *pionB2 = new pion(1, 1);
@@ -36,16 +37,13 @@ int main() {
 	roi *roiN = new roi(-6);
 
 	for (int i = 1; i < 2; i *= -1){
-		bouger_jeu(i);
 		
-		if (list_pieces[16] == 0){
-			std::cout<<"\n\nNoir à gagné !! \n\n\n";
+		if (fin_partie(i)){
 			break;
 		}
-		else if (list_pieces[-16] == 0){
-			std::cout<<"\n\nBlanc à gagné !! \n\n\n";
-			break;
-		}
+		bouger_jeu(i);
+
 	}
+	
 	return 0;
 }

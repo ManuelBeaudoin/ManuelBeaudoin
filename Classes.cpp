@@ -1,7 +1,10 @@
 #include "Header.h"
+#include <algorithm>
 
-extern std::vector <int> list_id_min;
-extern std::vector <int> list_id_max;
+
+extern std::vector <int> list_id_min = {};
+extern std::vector <int> list_id_max = {};
+
 extern std::map<int, piece*> list_pieces = {};
 extern int plateau [8][8] = {
 	{ 0,0,0,0,0,0,0,0 },
@@ -121,12 +124,19 @@ void piece::bouger(int i) {
 
 pion::pion(int bord, int num) {
 	if (bord < 0) {
+		valeur = -1;
 		position[0] = 6;
 		indentifiant = (8 - num) * -1;
+		list_id_min.push_back(indentifiant);
+		
 	}
 	else {
 		valeur = 1;
 		position[0] = 1;
+		indentifiant = (8 - num);
+		indentifiant = (8 - num);
+		list_id_max.push_back(indentifiant);
+	
 	}
 	
 	position[1] = num;
@@ -136,7 +146,7 @@ pion::pion(int bord, int num) {
 	list_pieces[indentifiant] = this;
 	ptrplateau[position[0]][position[1]] = indentifiant;
 	plateau[position[0]][position[1]] = valeur;
-	list_id.push_back(indentifiant);
+
 };
 std::vector <std::array<int, 2>> pion::list() {
 	std::array <int, 2> coup;
@@ -190,29 +200,32 @@ std::vector <std::array<int, 2>> pion::list() {
 
 
 tour::tour(int bord, int num) {
-	int cote;
+	
 	if (bord < 0) {
 		valeur = -2;
-		cote = -1;
 		position[0] = 7;
+		indentifiant = (10 - num) * -1;
+		list_id_min.push_back(indentifiant);
+
 	}
 	else {
 		valeur = 2;
-		cote = 1; 
 		position[0] = 3;
+		indentifiant = (10 - num);
+		list_id_max.push_back(indentifiant);
 	}
 	if (num == 0)
 		position[1] = 0;
 	else
 		position[1] = 7;
 	
-	indentifiant = (10 - num) * cote;
+
 	nom = "Tour";
 	
 	list_pieces[indentifiant] = this;
 	ptrplateau[position[0]][position[1]] = indentifiant;
 	plateau[position[0]][position[1]] = valeur;
-	list_id.push_back(indentifiant);
+
 };
 std::vector <std::array<int, 2>> tour::list() {
 	int i = 1;
@@ -363,30 +376,32 @@ std::vector <std::array<int, 2>> tour::list() {
 };
 
 
-cavalier::cavalier(int bord, int num) {
-	int cote;
+cavalier::cavalier(int bord, int num) {;
+	
 	if (bord < 0) {
 		valeur = -3;
-		cote = -1;
 		position[0] = 7;
+		indentifiant = (12 - num) * -1;
+		list_id_max.push_back(indentifiant);
 	}
 	else {
 		valeur = 3;
-		cote = 1;
 		position[0] = 0;
+		indentifiant = (12 - num);
+		list_id_max.push_back(indentifiant);
 	}
 	if (num == 1)
 		position[1] = 1;
 	else
 		position[1] = 6;
 	
-	indentifiant = (12 - num) * cote;
+
 	nom = "Cavalier";
 	
 	list_pieces[indentifiant] = this;
 	plateau[position[0]][position[1]] = valeur;
 	ptrplateau[position[0]][position[1]] = indentifiant;
-	list_id.push_back(indentifiant);
+
 };
 std::vector<std::array<int, 2>> cavalier::list() {
 	int i = 1;
@@ -468,29 +483,30 @@ std::vector<std::array<int, 2>> cavalier::list() {
 
 
 fou::fou(int bord, int num) {
-	int cote;
 	if (bord < 0) {
 		valeur = -4;
-		cote = -1;
 		position[0] = 7;
+		indentifiant = (14 - num) * -1;
+		list_id_min.push_back(indentifiant);
 	}
 	else {
 		valeur = 4;
-		cote = 1;
 		position[0] = 0;
+		indentifiant = (14 - num);
+		list_id_max.push_back(indentifiant);
 	}
 	if (num == 1)
 		position[1] = 2;
 	else
 		position[1] = 5;
 	
-	indentifiant = (14 - num) * cote;
+
 	nom = "Fou";
 	
 	list_pieces[indentifiant] = this;
 	ptrplateau[position[0]][position[1]] = indentifiant;
 	plateau[position[0]][position[1]] = valeur;
-	list_id.push_back(indentifiant);
+
 };
 std::vector <std::array<int, 2>> fou::list() {
 	int i = 1;
@@ -642,26 +658,27 @@ std::vector <std::array<int, 2>> fou::list() {
 
 
 dame::dame(int bord) {
-	int cote;
 	if (bord < 0) {
 		valeur = -5;
-		cote = -1;
 		position[0] = 7;
+		indentifiant = 15 * -1;
+		list_id_min.push_back(indentifiant);
 	}
 	else {
 		valeur = 5;
-		cote = 1;
 		position[0] = 0;
+		indentifiant = 15;
+		list_id_max.push_back(indentifiant);
 	}
 	
 	position[1] = 3;
-	indentifiant = 15 * cote;
+
 	nom = "Dame";
 	
 	list_pieces[indentifiant] = this;
 	ptrplateau[position[0]][position[1]] = indentifiant;
 	plateau[position[0]][position[1]] = valeur;
-	list_id.push_back(indentifiant);
+
 };
 std::vector <std::array<int, 2>> dame::list() {
 	int i = 1;
@@ -957,26 +974,27 @@ std::vector <std::array<int, 2>> dame::list() {
 
 
 roi::roi(int bord) {
-	int cote;
 	if (bord < 0) {
 		valeur = -6;
-		cote = -1;
 		position[0] = 7;
+		indentifiant = 16 * -1;
+		list_id_min.push_back(indentifiant);
 	}
 	else {
 		valeur = 6;
-		cote = 1;
 		position[0] = 0;
+		indentifiant = 16;
+		list_id_max.push_back(indentifiant);
 	}
 	
 	position[1] = 4;
 	nom = "Roi";
-	indentifiant = 16 * cote;
+
 	
 	list_pieces[indentifiant] = this;
 	ptrplateau[position[0]][position[1]] = indentifiant;
 	plateau[position[0]][position[1]] = valeur;
-	list_id.push_back(indentifiant);	
+	
 };
 std::vector <std::array<int, 2>> roi::list() {
 	int i = 1;

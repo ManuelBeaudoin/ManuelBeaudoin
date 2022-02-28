@@ -1,13 +1,13 @@
 #ifndef HEADER_H
 #define HEADER_H
-#include <algorithm> // Dans void inpt, Partie.cpp
+
 #include <iostream>	 // Partout
 #include <iterator>  // Dans inpt, partie.cpp
 #include <string>	 // Dans Classes, constructeurs
-#include <vector>	 // Dans 
-#include <limits>
-#include <tuple>
-#include <array>
+#include <vector>	 // partout 
+#include <limits>	 // Avec Algorithm
+#include <tuple>	 // Dans classes partout
+#include <array>	
 #include <map>
 
 
@@ -77,20 +77,20 @@ private:
 };
 
 
-extern std::vector <int> list_id_min;
-extern std::vector <int> list_id_max;
-extern std::map<int, piece*> list_pieces;
-extern int plateau[8][8];
-extern int ptrplateau[8][8];
+extern std::vector <int> list_id_min;				// liste des pieces blanches en vie
+extern std::vector <int> list_id_max;				// liste des pieces noires en vie
+extern std::map<int, piece*> list_pieces;			// ptr des pieces avec ptrplateau
+extern int plateau[8][8];							// pour afficher les pieces
+extern int ptrplateau[8][8];						// plateau permettant de retrouver le pointeur de la piece avec map list_piece
+ 
 
-
-void pPlateau();
-void bouger_jeu(int i);
+void pPlateau();									// Affiche le plateau
+void bouger_jeu(int i);								// Bouge prend l'iput du joueur puis bouge la piece
 
 
 int inpt(int i); 									// le coup que joue le joueur
 
-bool fin_partie();									// verifie si partie finie
+bool fin_partie(int i);									// verifie si partie finie (vrai si partie est finie)
 bool echec_mat(int i);								// vérifie si échec et mat
 bool partie_nulle(int i);							// verifie si partie nulle
 bool roi_echec(int i);								// verifie si roi echec 

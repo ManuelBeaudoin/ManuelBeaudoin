@@ -1,9 +1,7 @@
 TODO
 
 A faire au plus sacrant :
-    changer list_id pour list_id_(max ou min) dans les constructeurs, Classes.cpp
-    les fonctions de vérifications (bool) sont écrites, les incorporer dans main, ou piece::bouger, selon le cas.
-    réécrire le systeme de fin de partie FinPartie.cpp, l 173
+    la vérification après les pions fait planter le programme dans FinPartie.cpp
 
 fait
     securiser les listes de mouvements (positions[0] > 8 etc...) !!!!!  	-> fait

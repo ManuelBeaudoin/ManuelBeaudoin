@@ -1,4 +1,5 @@
 #include "Header.h"
+#include <algorithm>
 
 //portabilité vers Windows
 #if (defined _WIN32 || defined _WIN64)
@@ -20,7 +21,7 @@ void pPlateau() {
 								{3, "\u2658"},
 								{4, "\u2657"},
 								{5, "\u2655"},
-								{6, "\u2654"} };
+								{6, "\u2654"}, };
 	
 	cout << "   | A | B | C | D | E | F | G | H | \n";
 	cout << "---+-------------------------------+ \n";
@@ -30,10 +31,10 @@ void pPlateau() {
 		
 		for (int j = 0; j < 8; j++) {
 			if (plateau[i][j] < 0) {
-				cout << " " << dico[plateau[i][j]] << " |";
+				cout << " " << plateau[i][j] << " |";
 			}
 			else if (plateau[i][j] > 0) {
-				cout << " " << dico[plateau[i][j]] << " |";
+				cout << " " << plateau[i][j] << " |";
 
 			}
 			else {
