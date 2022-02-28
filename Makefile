@@ -1,13 +1,19 @@
-CXX=$(g++)
-CFLAGS= $(-std=c++17 -Wall) 
+CXX=g++
+CFLAGS=-std=c++17 -c 
 
 src=$(wildcard *.cpp)
+srcO=$(src:.cpp=.o)
 
-echec: $(src)
-  $(CXX) $^ $(CFLAGS) -o $@
+Echec.out: $(srcO)
+	@$(CXX) $^ -o $@
+
+%.o: %.cpp
+	@$(CXX) $< $(CFLAGS) 
+
+.PHONY: echec
+echec:Echec.out
+	@./Echec.out
 
 .PHONY: clean
 clean:
-  rm -rf *.o
-
-#g++ Classes.cpp Partie.cpp Main.cpp FinPartie.cpp -o echec -std=c++17 -Wall
+	rm -rf *.o
